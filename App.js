@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import CategoriesScreen from "./screen/CategoriesScreen";
+import MealsOverView from "./screen/MealsOverView";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,10 @@ export default function App() {
           <Stack.Screen
             name="MealsCategories"
             component={CategoriesScreen}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="MealsOverView"
+            component={MealsOverView}
           ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>

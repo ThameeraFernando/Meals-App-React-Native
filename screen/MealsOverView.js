@@ -1,10 +1,13 @@
+import { useRoute } from "@react-navigation/native";
 import { View, Text, StyleSheet } from "react-native";
 import { MEALS } from "../data/dummy-data";
-
-const MealsOverView = () => {
+const MealsOverView = ({ navigation, route }) => {
+  // we can use this useRoute hook to access to the route in nested components
+  // const route = useRoute();
+  const catID = route.params.categoryId;
   return (
     <View style={styles.container}>
-      <Text>Meals Overview screen</Text>
+      <Text>Meals Overview screen {catID}</Text>
     </View>
   );
 };

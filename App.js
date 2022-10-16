@@ -9,8 +9,10 @@ import MealsOverView from "./screen/MealsOverView";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Favourite from "./screen/Favourite";
 import { Ionicons } from "@expo/vector-icons";
+import FavoriteContextProvider from "./store/context/favorites-context";
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
+
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
@@ -52,48 +54,50 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: { backgroundColor: "#351401" },
-            headerTintColor: "white",
-            contentStyle: {
-              backgroundColor: "#24180f",
-            },
-          }}
-        >
-          <Stack.Screen
-            name="MealsCategories"
-            component={DrawerNavigator}
-            options={{
-              // title: "All Categories",
-              headerShown: false,
+      <FavoriteContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: { backgroundColor: "#351401" },
+              headerTintColor: "white",
+              contentStyle: {
+                backgroundColor: "#24180f",
+              },
             }}
-          ></Stack.Screen>
-          <Stack.Screen
-            name="MealDetail"
-            component={MealDetailsScreen}
-            // options={{
-            //   headerRight: () => {
-            //     return <Button title="tap me" />;
-            //   },
-            // }}
-          ></Stack.Screen>
-          <Stack.Screen
-            name="MealsOverView"
-            component={MealsOverView}
-            // // options={({ navigation, route }) => {
-            // //   const catID = route.params.categoryId;
-            // //   const category = CATEGORIES.find(
-            // //     (category) => category.id === catID
-            // //   );
-            // //   return {
-            // //     title: category.title,
-            // //   };
-            // }}
-          ></Stack.Screen>
-        </Stack.Navigator>
-      </NavigationContainer>
+          >
+            <Stack.Screen
+              name="MealsCategories"
+              component={DrawerNavigator}
+              options={{
+                // title: "All Categories",
+                headerShown: false,
+              }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="MealDetail"
+              component={MealDetailsScreen}
+              // options={{
+              //   headerRight: () => {
+              //     return <Button title="tap me" />;
+              //   },
+              // }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="MealsOverView"
+              component={MealsOverView}
+              // // options={({ navigation, route }) => {
+              // //   const catID = route.params.categoryId;
+              // //   const category = CATEGORIES.find(
+              // //     (category) => category.id === catID
+              // //   );
+              // //   return {
+              // //     title: category.title,
+              // //   };
+              // }}
+            ></Stack.Screen>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoriteContextProvider>
     </>
   );
 }

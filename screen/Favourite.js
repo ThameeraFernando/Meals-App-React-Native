@@ -4,9 +4,11 @@ import MealsList from "../components/MealsList/MealsList";
 import { MEALS } from "../data/dummy-data";
 import { FavoritesContext } from "../store/context/favorites-context";
 import { FlatList, StyleSheet, View } from "react-native";
+import { useSelector } from "react-redux";
 
 const Favourite = () => {
-  const FavoritesMealCtx = useContext(FavoritesContext);
+  const FavoritesMealCtx = useSelector((state) => state.favMeals);
+  // const FavoritesMealCtx = useContext(FavoritesContext);
   FavoritesMealCtx.ids;
   const favMeals = MEALS.filter((meal) =>
     FavoritesMealCtx.ids.includes(meal.id)
